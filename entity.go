@@ -9,7 +9,7 @@ type BlizzardInitParams struct {
 	WithdrawUrl      string `json:"withdrawUrl" mapstructure:"withdrawUrl" config:"withdrawUrl"  yaml:"withdrawUrl"`
 	DepositBackUrl   string `json:"depositBackUrl" mapstructure:"depositBackUrl" config:"depositBackUrl"  yaml:"depositBackUrl"`
 	DepositFeBackUrl string `json:"depositFeBackUrl" mapstructure:"depositFeBackUrl" config:"depositFeBackUrl"  yaml:"depositFeBackUrl"`
-	WithdrawBackUrl  string `json:"WithdrawBackUrl" mapstructure:"WithdrawBackUrl" config:"WithdrawBackUrl"  yaml:"WithdrawBackUrl"`
+	WithdrawBackUrl  string `json:"withdrawBackUrl" mapstructure:"withdrawBackUrl" config:"withdrawBackUrl"  yaml:"withdrawBackUrl"`
 }
 
 // ----------pre order-------------------------
