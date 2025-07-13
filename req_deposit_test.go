@@ -24,7 +24,7 @@ func (l VLog) Errorf(format string, args ...interface{}) {
 func TestDeposit(t *testing.T) {
 	vLog := VLog{}
 	//构造client
-	cli := NewClient(vLog, &BlizzardInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL})
+	cli := NewClient(vLog, &BlizzardInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL, DEPOSIT_BACK_URL, WITHDRAW_BACK_URL, DEPOSIT_FE_BACK_URL})
 
 	//发请求
 	resp, err := cli.Deposit(GenDepositRequestDemo())
@@ -37,10 +37,10 @@ func TestDeposit(t *testing.T) {
 
 func GenDepositRequestDemo() BlizzardDepositReq {
 	return BlizzardDepositReq{
-		MerchantOrderNo:  "323231224", //商户id
-		CurrencyCoinName: "VND",
-		//ChannelCode:      "ScanQRCode",
-		Amount:        100000,
-		PaymentMethod: 1,
+		OutTradeNo: "2323212411", //商户id
+		Amount:     "1199.2112",
+		UserName:   "John",
+		UserPhone:  "12345",
+		UserEmail:  "111",
 	}
 }

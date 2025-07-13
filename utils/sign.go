@@ -9,7 +9,7 @@ import (
 )
 
 // 计算请求签名
-func Sign(params map[string]interface{}, accessKey string) string {
+func Sign(params map[string]string, accessKey string) string {
 
 	keys := lo.Keys(params)
 	sort.Strings(keys)
@@ -18,7 +18,7 @@ func Sign(params map[string]interface{}, accessKey string) string {
 	var sb strings.Builder
 	for _, k := range keys {
 		value := cast.ToString(params[k])
-		if k != "signature" && value != "" {
+		if k != "sign" && value != "" {
 			//只有非空才可以参与签名
 			sb.WriteString(fmt.Sprintf("%s=%s&", k, value))
 		}
@@ -34,16 +34,16 @@ func Sign(params map[string]interface{}, accessKey string) string {
 }
 
 // 验证签名
-func VerifySign(params map[string]interface{}, signKey string) bool {
+func VerifySign(params map[string]string, signKey string) bool {
 	// Check if sign exists in params
-	signValue, exists := params["signature"]
+	signValue, exists := params["sign"]
 	if !exists {
 		return false
 	}
 
 	// Get the sign value and remove it from params
 	key := fmt.Sprintf("%v", signValue)
-	delete(params, "signature")
+	delete(params, "sign")
 
 	// Generate current signature
 	currentKey := Sign(params, signKey)

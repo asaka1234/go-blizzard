@@ -2,6 +2,7 @@ package go_blizzard
 
 import (
 	"crypto/tls"
+	"fmt"
 	"github.com/asaka1234/go-blizzard/utils"
 	"github.com/mitchellh/mapstructure"
 )
@@ -11,23 +12,23 @@ func (cli *Client) Withdraw(req BlizzardWithdrawReq) (*BlizzardWithdrawResponse,
 
 	rawURL := cli.Params.WithdrawUrl
 
-	var params map[string]interface{}
+	var params map[string]string
 	mapstructure.Decode(req, &params)
-	params["uid"] = cli.Params.MerchantId
-	params["channelCode"] = "BankDirect" //写死
+	params["appId"] = cli.Params.MerchantId
+	params["currency"] = "THB" //写死
 
 	//签名
 	signStr := utils.Sign(params, cli.Params.AccessKey)
-	params["signature"] = signStr
+	params["sign"] = signStr
 
 	//返回值会放到这里
 	var result BlizzardWithdrawResponse
 
-	_, err := cli.ryClient.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true}).
+	resp, err := cli.ryClient.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true}).
 		SetCloseConnection(true).
 		R().
 		SetHeaders(getHeaders()).
-		SetBody(params).
+		SetFormData(params).
 		SetDebug(cli.debugMode).
 		SetResult(&result).
 		Post(rawURL)
@@ -35,6 +36,17 @@ func (cli *Client) Withdraw(req BlizzardWithdrawReq) (*BlizzardWithdrawResponse,
 	if err != nil {
 		return nil, err
 	}
+
+	if resp.StatusCode() != 200 {
+		return nil, fmt.Errorf("status code: %d", resp.StatusCode())
+	}
+
+	if resp.Error() != nil {
+		//反序列化错误会在此捕捉
+		return nil, fmt.Errorf("%v, body:%s", resp.Error(), resp.Body())
+	}
+
+	fmt.Printf("==>%+v\n", string(resp.Body()))
 
 	return &result, err
 }

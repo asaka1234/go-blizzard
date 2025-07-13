@@ -8,7 +8,7 @@ import (
 func TestWithdraw(t *testing.T) {
 	vLog := VLog{}
 	//构造client
-	cli := NewClient(vLog, &BlizzardInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL})
+	cli := NewClient(vLog, &BlizzardInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL, DEPOSIT_BACK_URL, WITHDRAW_BACK_URL, DEPOSIT_FE_BACK_URL})
 
 	//发请求
 	resp, err := cli.Withdraw(GenWithdrawRequestDemo())
@@ -21,14 +21,11 @@ func TestWithdraw(t *testing.T) {
 
 func GenWithdrawRequestDemo() BlizzardWithdrawReq {
 	return BlizzardWithdrawReq{
-		MerchantOrderNo:  "111",
-		CurrencyCoinName: "VND",
-		//ChannelCode:      "BankDirect", ////网银扫码:ScanQRCode, 银行直连:BankDirect
-		Amount:         "1000000",
-		BankCode:       "ACB",
-		BankName:       "ACB",
-		BankBranchName: "aa",
-		BankUserName:   "cy",
-		BankAccount:    "107719719971",
+		OutOrderNo:   "111",
+		Amount:       "1000000",
+		BankName:     "ACB",
+		BankBranch:   "aa",
+		BankUserName: "cy",
+		BankCard:     "107719719971",
 	}
 }

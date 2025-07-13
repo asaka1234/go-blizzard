@@ -1,7 +1,6 @@
 整体流程
 ==============
-1. server负责对请求参数做sign签名. 随后发请求给psp
-4. server收到回调
+1. 目前只支持THB
 
 
 鉴权
@@ -11,7 +10,7 @@
 
 回调地址
 ==============
-在psp端指定的callback地址, 所以无法在pre-order中动态指定
+在pre-order中动态指定
 
 
 Comment
