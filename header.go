@@ -1,4 +1,4 @@
-package go_exglobal
+package go_blizzard
 
 func getHeaders() map[string]string {
 	return map[string]string{

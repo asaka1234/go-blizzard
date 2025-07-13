@@ -1,4 +1,4 @@
-package go_exglobal
+package go_blizzard
 
 import (
 	"fmt"
@@ -24,7 +24,7 @@ func (l VLog) Errorf(format string, args ...interface{}) {
 func TestDeposit(t *testing.T) {
 	vLog := VLog{}
 	//构造client
-	cli := NewClient(vLog, &ExglobalInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL})
+	cli := NewClient(vLog, &BlizzardInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL})
 
 	//发请求
 	resp, err := cli.Deposit(GenDepositRequestDemo())
@@ -35,8 +35,8 @@ func TestDeposit(t *testing.T) {
 	fmt.Printf("resp:%+v\n", resp)
 }
 
-func GenDepositRequestDemo() ExglobalDepositReq {
-	return ExglobalDepositReq{
+func GenDepositRequestDemo() BlizzardDepositReq {
+	return BlizzardDepositReq{
 		MerchantOrderNo:  "323231224", //商户id
 		CurrencyCoinName: "VND",
 		//ChannelCode:      "ScanQRCode",

@@ -1,13 +1,13 @@
-package go_exglobal
+package go_blizzard
 
 import (
 	"crypto/tls"
-	"github.com/asaka1234/go-exglobal/utils"
+	"github.com/asaka1234/go-blizzard/utils"
 	"github.com/mitchellh/mapstructure"
 )
 
 // withdraw
-func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse, error) {
+func (cli *Client) Withdraw(req BlizzardWithdrawReq) (*BlizzardWithdrawResponse, error) {
 
 	rawURL := cli.Params.WithdrawUrl
 
@@ -21,7 +21,7 @@ func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse,
 	params["signature"] = signStr
 
 	//返回值会放到这里
-	var result ExglobalWithdrawResponse
+	var result BlizzardWithdrawResponse
 
 	_, err := cli.ryClient.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true}).
 		SetCloseConnection(true).

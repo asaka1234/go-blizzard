@@ -1,19 +1,19 @@
-package go_exglobal
+package go_blizzard
 
 import (
-	"github.com/asaka1234/go-exglobal/utils"
+	"github.com/asaka1234/go-blizzard/utils"
 	"github.com/go-resty/resty/v2"
 )
 
 type Client struct {
-	Params *ExglobalInitParams
+	Params *BlizzardInitParams
 
 	ryClient  *resty.Client
 	debugMode bool
 	logger    utils.Logger
 }
 
-func NewClient(logger utils.Logger, params *ExglobalInitParams) *Client {
+func NewClient(logger utils.Logger, params *BlizzardInitParams) *Client {
 	return &Client{
 		Params: params,
 

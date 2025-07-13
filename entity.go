@@ -1,6 +1,6 @@
-package go_exglobal
+package go_blizzard
 
-type ExglobalInitParams struct {
+type BlizzardInitParams struct {
 	MerchantId int64  `json:"merchantId" mapstructure:"merchantId" config:"merchantId"  yaml:"merchantId"` // merchantId
 	AccessKey  string `json:"accessKey" mapstructure:"accessKey" config:"accessKey"  yaml:"accessKey"`     //接入秘钥
 	BackKey    string `json:"backKey" mapstructure:"backKey" config:"backKey"  yaml:"backKey"`             //回调秘钥
@@ -14,7 +14,7 @@ type ExglobalInitParams struct {
 // ----------pre order-------------------------
 
 // 5.2. Create a collection order
-type ExglobalDepositReq struct {
+type BlizzardDepositReq struct {
 	MerchantOrderNo  string  `json:"merchantOrderNo" mapstructure:"merchantOrderNo"`   //商户订单号CurrencyCoinName string `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持VND
 	CurrencyCoinName string  `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持 VND
 	Amount           float64 `json:"amount" mapstructure:"amount"`                     //不支持小数
@@ -26,7 +26,7 @@ type ExglobalDepositReq struct {
 	//ChannelCode      string  `json:"channelCode" mapstructure:"channelCode"`           //网银扫码:ScanQRCode, 银行直连:BankDirect
 }
 
-type ExglobalDepositResponse struct {
+type BlizzardDepositResponse struct {
 	Code    int    `json:"code" mapstructure:"code"`       // 1是成功
 	Success bool   `json:"success" mapstructure:"success"` //true
 	Message string `json:"message" mapstructure:"message"`
@@ -47,7 +47,7 @@ type ExglobalDepositResponse struct {
 }
 
 // ------------------------------------------------------------
-type ExglobalDepositBackReq struct {
+type BlizzardDepositBackReq struct {
 	RecordId        int64  `json:"recordId" mapstructure:"recordId"`               //平台订单号
 	UID             int64  `json:"uid" mapstructure:"uid"`                         //商户号
 	OrderAmount     string `json:"orderAmount" mapstructure:"orderAmount"`         //订单金额与下单实际金额一致
@@ -56,7 +56,7 @@ type ExglobalDepositBackReq struct {
 	Signature       string `json:"signature" mapstructure:"signature"`
 }
 
-type ExglobalDepositBackResp struct {
+type BlizzardDepositBackResp struct {
 	Code    int    `json:"code" mapstructure:"code"` // 1是成功
 	Success bool   `json:"success" mapstructure:"success"`
 	Message string `json:"message" mapstructure:"message"`
@@ -65,7 +65,7 @@ type ExglobalDepositBackResp struct {
 
 //===========withdraw===================================
 
-type ExglobalWithdrawReq struct {
+type BlizzardWithdrawReq struct {
 	MerchantOrderNo  string `json:"merchantOrderNo" mapstructure:"merchantOrderNo"`   //商户订单号
 	CurrencyCoinName string `json:"currencyCoinName" mapstructure:"currencyCoinName"` //VND
 	Amount           string `json:"amount" mapstructure:"amount"`                     //不支持小数
@@ -80,7 +80,7 @@ type ExglobalWithdrawReq struct {
 	//Signature string `json:"signature" mapstructure:"signature"` //签名
 }
 
-type ExglobalWithdrawResponse struct {
+type BlizzardWithdrawResponse struct {
 	Code    int    `json:"code" mapstructure:"code"`       // 1是成功
 	Success bool   `json:"success" mapstructure:"success"` //true
 	Message string `json:"message" mapstructure:"message"`
@@ -97,7 +97,7 @@ type ExglobalWithdrawResponse struct {
 	} `json:"data" mapstructure:"data"`
 }
 
-type ExglobalWithdrawBackReq struct {
+type BlizzardWithdrawBackReq struct {
 	RecordId        int64  `json:"recordId" mapstructure:"recordId"`               //平台订单号
 	UID             int64  `json:"uid" mapstructure:"uid"`                         //商户号
 	OrderAmount     string `json:"orderAmount" mapstructure:"orderAmount"`         //订单金额与下单实际金额一致
@@ -106,7 +106,7 @@ type ExglobalWithdrawBackReq struct {
 	Signature       string `json:"signature" mapstructure:"signature"`
 }
 
-type ExglobalWithdrawBackResp struct {
+type BlizzardWithdrawBackResp struct {
 	Code    int    `json:"code" mapstructure:"code"` // 1是成功
 	Success bool   `json:"success" mapstructure:"success"`
 	Message string `json:"message" mapstructure:"message"`
