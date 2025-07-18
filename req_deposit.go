@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"github.com/asaka1234/go-blizzard/utils"
+	jsoniter "github.com/json-iterator/go"
 	"github.com/mitchellh/mapstructure"
 )
 
@@ -35,6 +36,9 @@ func (cli *Client) Deposit(req BlizzardDepositReq) (*BlizzardDepositResponse, er
 		SetResult(&result).
 		Post(rawURL)
 
+	restLog, _ := jsoniter.ConfigCompatibleWithStandardLibrary.Marshal(utils.GetRestyLog(resp))
+	cli.logger.Infof("PSPResty#blizzad#deposit->%+v", string(restLog))
+
 	if err != nil {
 		return nil, err
 	}
@@ -47,8 +51,6 @@ func (cli *Client) Deposit(req BlizzardDepositReq) (*BlizzardDepositResponse, er
 		//反序列化错误会在此捕捉
 		return nil, fmt.Errorf("%v, body:%s", resp.Error(), resp.Body())
 	}
-
-	fmt.Printf("==>%+v\n", string(resp.Body()))
 
 	return &result, nil
 }
