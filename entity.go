@@ -60,12 +60,12 @@ type BlizzardDepositBackReq struct {
 //===========withdraw===================================
 
 type BlizzardWithdrawReq struct {
-	OutOrderNo   string      `json:"outOrderNo" mapstructure:"outOrderNo"` //商户订单号
-	Amount       interface{} `json:"amount" mapstructure:"amount"`         //todo 2位小数
-	BankName     string      `json:"bankName" mapstructure:"bankName"`
-	BankBranch   string      `json:"bankBranch" mapstructure:"bankBranch"`
-	BankUserName string      `json:"bankUserName" mapstructure:"bankUserName"`
-	BankCard     string      `json:"bankCard" mapstructure:"bankCard"`
+	OutOrderNo   string `json:"outOrderNo" mapstructure:"outOrderNo"` //商户订单号
+	Amount       string `json:"amount" mapstructure:"amount"`         //todo 2位小数
+	BankName     string `json:"bankName" mapstructure:"bankName"`
+	BankBranch   string `json:"bankBranch" mapstructure:"bankBranch"`
+	BankUserName string `json:"bankUserName" mapstructure:"bankUserName"`
+	BankCard     string `json:"bankCard" mapstructure:"bankCard"`
 	//以下sdk帮搞
 	//AppId int64  `json:"appId" mapstructure:"appId"` //商户编码
 	//Sign  string `json:"sign" mapstructure:"sign"`   //签名
@@ -78,7 +78,7 @@ type BlizzardWithdrawResponse struct {
 	Data struct {
 		AppId      int64       `json:"appId" mapstructure:"appId"`
 		OrderNo    string      `json:"orderNo" mapstructure:"orderNo"`
-		Apply      string      `json:"apply" mapstructure:"apply"`
+		Apply      float64     `json:"apply" mapstructure:"apply"`
 		OutTradeNo string      `json:"outTradeNo" mapstructure:"outTradeNo"`
 		Fee        interface{} `json:"fee" mapstructure:"fee"`
 	} `json:"data"`
