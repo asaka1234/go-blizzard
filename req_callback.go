@@ -14,8 +14,7 @@ func (cli *Client) DepositCallback(req BlizzardDepositBackReq, processor func(Bl
 	mapstructure.Decode(req, &params)
 
 	paramsMap := ConvertToStringMap(params)
-
-	verifyResult := utils.VerifySign(paramsMap, cli.Params.BackKey)
+	verifyResult := utils.VerifySign(paramsMap, cli.Params.AccessKey)
 	if !verifyResult {
 		//验签失败
 		return errors.New("verify sign error!")
@@ -38,7 +37,7 @@ func (cli *Client) WithdrawCallBack(req BlizzardWithdrawBackReq, processor func(
 
 	paramsMap := ConvertToStringMap(params)
 
-	verifyResult := utils.VerifySign(paramsMap, cli.Params.BackKey)
+	verifyResult := utils.VerifySign(paramsMap, cli.Params.AccessKey)
 	if !verifyResult {
 		//验签失败
 		return errors.New("verify sign error!")

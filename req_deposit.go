@@ -16,7 +16,7 @@ func (cli *Client) Deposit(req BlizzardDepositReq) (*BlizzardDepositResponse, er
 	mapstructure.Decode(req, &params)
 
 	params["appId"] = cli.Params.MerchantId
-	params["channelId"] = "104"
+	//params["channelId"] = "104"
 	params["callbackUrl"] = cli.Params.DepositBackUrl
 	params["successUrl"] = cli.Params.DepositFeBackUrl
 

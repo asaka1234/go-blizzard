@@ -16,7 +16,8 @@ func (cli *Client) Withdraw(req BlizzardWithdrawReq) (*BlizzardWithdrawResponse,
 	var params map[string]string
 	mapstructure.Decode(req, &params)
 	params["appId"] = cli.Params.MerchantId
-	params["currency"] = "THB" //写死
+	//params["currency"] = "THB" //写死
+	params["callbackUrl"] = cli.Params.WithdrawBackUrl
 
 	//签名
 	signStr := utils.Sign(params, cli.Params.AccessKey)
@@ -30,6 +31,7 @@ func (cli *Client) Withdraw(req BlizzardWithdrawReq) (*BlizzardWithdrawResponse,
 		R().
 		SetHeaders(getHeaders()).
 		SetFormData(params).
+		SetBody(params).
 		SetDebug(cli.debugMode).
 		SetResult(&result).
 		Post(rawURL)

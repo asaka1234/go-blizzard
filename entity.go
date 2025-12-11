@@ -21,6 +21,7 @@ type BlizzardDepositReq struct {
 	UserName   string `json:"userName" mapstructure:"userName"`     //付款人name
 	UserPhone  string `json:"userPhone" mapstructure:"userPhone"`   //付款人mobile
 	UserEmail  string `json:"userEmail" mapstructure:"userEmail"`   //付款人email
+	ChannelId  string `json:"channelId" mapstructure:"channelId"`   //通道code THB=104,INR=108
 	//SDK帮填写
 	//AppId       string  `json:"appId" mapstructure:"appId"`             //商户号
 	//Sign        string `json:"sign" mapstructure:"sign"`               //签名
@@ -44,15 +45,15 @@ type BlizzardDepositResponse struct {
 
 // ------------------------------------------------------------
 type BlizzardDepositBackReq struct {
-	AppId      interface{} `json:"appId" mapstructure:"appId"`
-	OutTradeNo string      `json:"outTradeNo" mapstructure:"outTradeNo"` //商户订单号
-	OrderNo    string      `json:"orderNo" mapstructure:"orderNo"`       //平台订单号
+	AppId      interface{} `form:"appId" json:"appId" mapstructure:"appId"`
+	OutTradeNo string      `form:"outTradeNo" json:"outTradeNo" mapstructure:"outTradeNo"` //商户订单号
+	OrderNo    string      `form:"orderNo" json:"orderNo" mapstructure:"orderNo"`          //平台订单号
 
-	ChannelId  string      `json:"channelId" mapstructure:"channelId"`   //
-	Amount     interface{} `json:"amount" mapstructure:"amount"`         //金额
-	AmountTrue interface{} `json:"amountTrue" mapstructure:"amountTrue"` //金额
-	PayStatus  string      `json:"payStatus" mapstructure:"payStatus"`   //SUCCESS
-	Sign       string      `json:"sign" mapstructure:"sign"`
+	ChannelId  string      `form:"channelId" json:"channelId" mapstructure:"channelId"`    //
+	Amount     interface{} `form:"amount" json:"amount" mapstructure:"amount"`             //金额
+	AmountTrue interface{} `form:"amountTrue" json:"amountTrue" mapstructure:"amountTrue"` //金额
+	PayStatus  string      `form:"payStatus" json:"payStatus" mapstructure:"payStatus"`    //SUCCESS
+	Sign       string      `form:"sign" json:"sign" mapstructure:"sign"`
 }
 
 //回调返回 SUCCESS
@@ -66,10 +67,11 @@ type BlizzardWithdrawReq struct {
 	BankBranch   string `json:"bankBranch" mapstructure:"bankBranch"`
 	BankUserName string `json:"bankUserName" mapstructure:"bankUserName"`
 	BankCard     string `json:"bankCard" mapstructure:"bankCard"`
+	Currency     string `json:"currency" mapstructure:"currency"` //THB INR
 	//以下sdk帮搞
 	//AppId int64  `json:"appId" mapstructure:"appId"` //商户编码
 	//Sign  string `json:"sign" mapstructure:"sign"`   //签名
-	//Currency string `json:"currency" mapstructure:"currency"` //THB..
+	//CallbackUrl string `json:"callbackUrl" mapstructure:"callbackUrl"` //提现申请回调地址
 }
 
 type BlizzardWithdrawResponse struct {
@@ -85,13 +87,14 @@ type BlizzardWithdrawResponse struct {
 }
 
 type BlizzardWithdrawBackReq struct {
-	AppId      interface{} `json:"appId" mapstructure:"appId"`
-	OutTradeNo string      `json:"outTradeNo" mapstructure:"outTradeNo"` //商户订单号
-	OrderNo    string      `json:"orderNo" mapstructure:"orderNo"`       //平台订单号
+	AppId      interface{} `form:"appId" json:"appId" mapstructure:"appId"`
+	OutTradeNo string      `form:"outTradeNo" json:"outTradeNo" mapstructure:"outTradeNo"` //商户订单号
+	OrderNo    string      `form:"orderNo" json:"orderNo" mapstructure:"orderNo"`          //平台订单号
 
-	Currency    string      `json:"currency" mapstructure:"currency"`       //ccy
-	OrderStatus interface{} `json:"orderStatus" mapstructure:"orderStatus"` //Order Status: 0 Not Processed,  1 Paid, 2 Rejected
-	Sign        string      `json:"sign" mapstructure:"sign"`
+	Currency    string      `form:"currency" json:"currency" mapstructure:"currency"`          //ccy
+	OrderStatus interface{} `form:"orderStatus" json:"orderStatus" mapstructure:"orderStatus"` //Order Status: 0 Not Processed,  1 Paid, 2 Rejected
+	Sign        string      `form:"sign" json:"sign" mapstructure:"sign"`
+	OutOrderNo  string      `form:"outOrderNo" json:"outOrderNo" mapstructure:"outOrderNo"` //商户订单号
 }
 
 //After the callback succeeds, return the SUCCESS string
