@@ -45,15 +45,15 @@ type BlizzardDepositResponse struct {
 
 // ------------------------------------------------------------
 type BlizzardDepositBackReq struct {
-	AppId      interface{} `form:"appId" json:"appId" mapstructure:"appId"`
-	OutTradeNo string      `form:"outTradeNo" json:"outTradeNo" mapstructure:"outTradeNo"` //商户订单号
-	OrderNo    string      `form:"orderNo" json:"orderNo" mapstructure:"orderNo"`          //平台订单号
+	AppId      string `form:"appId" json:"appId" mapstructure:"appId"`
+	OutTradeNo string `form:"outTradeNo" json:"outTradeNo" mapstructure:"outTradeNo"` //商户订单号
+	OrderNo    string `form:"orderNo" json:"orderNo" mapstructure:"orderNo"`          //平台订单号
 
-	ChannelId  string      `form:"channelId" json:"channelId" mapstructure:"channelId"`    //
-	Amount     interface{} `form:"amount" json:"amount" mapstructure:"amount"`             //金额
-	AmountTrue interface{} `form:"amountTrue" json:"amountTrue" mapstructure:"amountTrue"` //金额
-	PayStatus  string      `form:"payStatus" json:"payStatus" mapstructure:"payStatus"`    //SUCCESS
-	Sign       string      `form:"sign" json:"sign" mapstructure:"sign"`
+	ChannelId  string `form:"channelId" json:"channelId" mapstructure:"channelId"`    //
+	Amount     string `form:"amount" json:"amount" mapstructure:"amount"`             //金额
+	AmountTrue string `form:"amountTrue" json:"amountTrue" mapstructure:"amountTrue"` //金额
+	PayStatus  string `form:"payStatus" json:"payStatus" mapstructure:"payStatus"`    //SUCCESS
+	Sign       string `form:"sign" json:"sign" mapstructure:"sign"`
 }
 
 //回调返回 SUCCESS
@@ -87,14 +87,14 @@ type BlizzardWithdrawResponse struct {
 }
 
 type BlizzardWithdrawBackReq struct {
-	AppId      interface{} `form:"appId" json:"appId" mapstructure:"appId"`
-	OutTradeNo string      `form:"outTradeNo" json:"outTradeNo" mapstructure:"outTradeNo"` //商户订单号
-	OrderNo    string      `form:"orderNo" json:"orderNo" mapstructure:"orderNo"`          //平台订单号
+	AppId      string `form:"appId" json:"appId" mapstructure:"appId"`
+	OutTradeNo string `form:"outTradeNo" json:"outTradeNo" mapstructure:"outTradeNo"` //商户订单号
+	OrderNo    string `form:"orderNo" json:"orderNo" mapstructure:"orderNo"`          //平台订单号
 
-	Currency    string      `form:"currency" json:"currency" mapstructure:"currency"`          //ccy
-	OrderStatus interface{} `form:"orderStatus" json:"orderStatus" mapstructure:"orderStatus"` //Order Status: 0 Not Processed,  1 Paid, 2 Rejected
-	Sign        string      `form:"sign" json:"sign" mapstructure:"sign"`
-	OutOrderNo  string      `form:"outOrderNo" json:"outOrderNo" mapstructure:"outOrderNo"` //商户订单号
+	Currency    string `form:"currency" json:"currency" mapstructure:"currency"`          //ccy
+	OrderStatus string `form:"orderStatus" json:"orderStatus" mapstructure:"orderStatus"` //Order Status: 0 Not Processed,  1 Paid, 2 Rejected
+	Sign        string `form:"sign" json:"sign" mapstructure:"sign"`
+	OutOrderNo  string `form:"outOrderNo" json:"outOrderNo" mapstructure:"outOrderNo"` //商户订单号
 }
 
 //After the callback succeeds, return the SUCCESS string
